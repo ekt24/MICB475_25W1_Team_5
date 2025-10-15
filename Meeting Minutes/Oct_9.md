@@ -11,8 +11,9 @@
 * Tentative analysis routes
   * carry out basic diversity analysis to start using the Exploratory Data Analysis route to get best ~10 variables (?) - dataset might not be big enough but can still get decent results
   * differential abdunace analysis (additional module 19)
-  * compile a predictive analysis on gut dataset (essentially compying what was done for the skin microbiome paper, but for this dataset), using random forest analysis
+  * compile a predictive analysis on gut dataset (essentially compying what was done for the skin microbiome paper, but for this dataset), using random forest analysis to check if any variables are correlating
   * use pi-crust to look at metabolic pathways to answer a novel question(?)
+  * Three plots to look at: one for just metadata where we plot each variable against opiod use to get correlation, one for just taxonomy, and one that's combined to see the ranking
 * Tentative Research Question
   * Does combining gut microbiome data with clinical biomarkers improve the prediction accuracy of Opioid Use Disorder compared to using either alone?
 ### Research Proposal Prep
