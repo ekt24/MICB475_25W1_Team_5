@@ -7,23 +7,19 @@
 ## Meeting Minutes
 ### Research Question/Dataset Discussion
 * Dataset chosen: Gut & Opioid Use Dataset
- * Note: Opioid Use is only indicated as 'Yes' in this dataset for patients who meet the  Opioid Use Disorder critera according to DSM-4.
-* tentative analysis routes
-  * comple a predictive analysis on gut dataset (essentially compying what was done for the skin microbiome paper, but for this dataset), using random forest analysis
- 
-  * 
-
-# Meeting Notes
-* can do predicitve analysis on gut dataset (complementing what was done from the skin microbiome)
-* Avril suggests using random forest analysis
-* clarification on opiod-use patients
-* patients with opioid use were identified using DSM-4
-* looking at metabolic pathways using pi-crust (module 19)
-* focus on biomarkers vs microbiome, or together - which one is the better predictor
-* use EDA to get best of 10-15 variables (can't do too few or too many), generla diversity metrics - which microbiome variables are 
-* differential abduance - next module
-* only need to process stuff in qiime for the proposal
-## TO DO 
-* next week is all about the proposal - bring questions!!
-* read through proposals, read what is required...
+  * Note: Opioid Use is only indicated as 'Yes' in this dataset for patients who meet the  Opioid Use Disorder critera according to DSM-4.
+* Tentative analysis routes
+  * carry out basic diversity analysis to start using the Explatory Data Analysis route to get best ~10 variables (?)
+  * differential abdunace analysis (additional module 19)
+  * compile a predictive analysis on gut dataset (essentially compying what was done for the skin microbiome paper, but for this dataset), using random forest analysis
+  * use pi-crust to look at metabolic pathways (?)
+* Tentative Research Question
+  * Does combining gut microbiome data with clinical biomarkers improve the prediction accuracy of Opioid Use Disorder compared to using either alone?
+### Research Proposal Prep
+* Will be discussed next week, bring questions
+* We only need to do quality control processing  in qiime for the proposal, no diversity analysis yet
+## To Do 
+* read through the proposal, and bring a list of questions to the next meeting
+* start processing stuff in qiime (after Evelyn or Avril confirm that the dataset is available on the server)
+* create next meeting agenda by Wednesday night
 
