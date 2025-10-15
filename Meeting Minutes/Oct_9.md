@@ -4,14 +4,15 @@
 * narrow down (and potentially finalize) a research question(s)
   * decide if proceeding with a more basic/advance analysis
   * if final, draft workflow & analysis timeline
-## Research Question Discussion
+## Meeting Minutes
+### Research Question/Dataset Discussion
 * Dataset chosen: Gut & Opioid Use Dataset
-* struggling with finding a novel question
-  * skin microbiome dataset focuses on microbime differences across regions and uses both basic and advance analysis (random forest), unable to understand what metadata can be further analyzed since the only variables mentioned are skin regions - which have been thoroughly analyszed 
-  * gut and opioid use dataset focuses on T2D and insulin resistance, lots of variables we could use, but likely not novel... sort of lost on what could be done with this dataset
-  * do we want to stick with a previous dataset instead?
-## Additional Questions/Ideas for Prof & Team Members
-* regarding the two new datasets: is it feasible to do a skin-gut axis analysis? to see if the indicators for opioid use from analyzing the skin micriobiome is aligned with that of the gut microbiota
+ * Note: Opioid Use is only indicated as 'Yes' in this dataset for patients who meet the  Opioid Use Disorder critera according to DSM-4.
+* tentative analysis routes
+  * comple a predictive analysis on gut dataset (essentially compying what was done for the skin microbiome paper, but for this dataset), using random forest analysis
+ 
+  * 
+
 # Meeting Notes
 * can do predicitve analysis on gut dataset (complementing what was done from the skin microbiome)
 * Avril suggests using random forest analysis
