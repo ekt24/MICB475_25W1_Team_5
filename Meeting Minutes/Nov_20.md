@@ -8,3 +8,5 @@
 # Meeting Minutes
 
 # To do
+* Wilcoxon on biomarkers to narrow down biomarkers, then build random forest model for biomarkers
+* We can figure out how to narrow down taxa after we get deseq results
