@@ -1,1 +1,41 @@
+  ## Determine ASVs with DADA2 
+  ## Run Denoising and Clustering
+qiime dada2 denoise-single \
+  --i-demultiplexed-seqs demux.qza \
+  --p-trim-left 0 \
+  --p-trunc-len 240 \
+  --o-representative-sequences rep-seqs.qza \
+  --o-table table.qza \
+  --o-denoising-stats stats.qza
+
+  qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs demux_seqs.qza \
+  --p-trim-left-f 0 \
+  --p-trim-left-r 0 \
+  --p-trunc-len-f 240 \
+  --p-trunc-len-r 200 \
+  --o-representative-sequences rep-seqs.qza \
+  --o-table table.qza \
+  --o-denoising-stats stats.qza
+
+qiime dada2 denoise-single \
+  --i-demultiplexed-seqs demux_seqs_final.qza \
+  --p-trim-left 0 \
+  --p-trunc-len 240 \
+  --o-representative-sequences rep-seqs-final.qza \
+  --o-table table.qza \
+  --o-denoising-stats final_stats.qza
+
+# Visualize ASVs stats
+qiime feature-table summarize \
+  --i-table table-final2.qza \
+  --o-visualization final_table2.qzv \
+  --m-sample-metadata-file ~/opioid_metadata_revised.txt
+
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs-final2.qza \
+  --o-visualization rep-seqs-final2.qzv
+
+
+  scp root@10.19.139.118:~/rep-seqs-final2.qzv
 
