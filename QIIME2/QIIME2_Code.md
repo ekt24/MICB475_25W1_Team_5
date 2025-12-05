@@ -6,8 +6,8 @@ qiime dada2 denoise-single \
   --i-demultiplexed-seqs demux.qza \
   --p-trim-left 0 \
   --p-trunc-len 240 \
-  --o-representative-sequences rep-seqs.qza \
-  --o-table table.qza \
+  --o-representative-sequences rep-seqs-final2.qza \
+  --o-table table-final2.qza \
   --o-denoising-stats stats.qza
 ```
 
@@ -64,7 +64,7 @@ scp root@10.19.139.118:~/alpha-rarefaction-final.qzv .
 ```bash
 qiime feature-classifier classify-sklearn \
   --i-classifier /datasets/classifiers/silva-138-99-515-806-nb-classifier.qza \
-  --i-reads rep-seqs.qza \
+  --i-reads rep-seqs-final2.qza \
   --o-classification taxonomy.qza
 ```
 
@@ -78,7 +78,7 @@ qiime metadata tabulate \
 
 ```bash
 qiime taxa barplot \
-  --i-table table.qza \
+  --i-table table-final2.qza \
   --i-taxonomy taxonomy.qza \
   --m-metadata-file /datasets/project_1/moving_pictures/sample-metadata.tsv \
   --o-visualization taxa-bar-plots.qzv
