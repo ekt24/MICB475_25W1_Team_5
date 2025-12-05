@@ -11,21 +11,6 @@ qiime dada2 denoise-single \
   --o-denoising-stats stats.qza
 ```
 
-### Run Denoising and Clustering (Paired-End)
-
-```bash
-qiime dada2 denoise-paired \
-  --i-demultiplexed-seqs demux_seqs.qza \
-  --p-trim-left-f 0 \
-  --p-trim-left-r 0 \
-  --p-trunc-len-f 240 \
-  --p-trunc-len-r 200 \
-  --o-representative-sequences rep-seqs.qza \
-  --o-table table.qza \
-  --o-denoising-stats stats.qza
-```
-
-
 ## Visualize ASVs stats
 
 ```bash
@@ -46,7 +31,7 @@ qiime feature-table tabulate-seqs \
 ```bash
 scp root@10.19.139.118:~/rep-seqs-final2.qzv .
 ```
-# Generate a tree for phylogenetic diversity analyses
+## Generate a tree for phylogenetic diversity analyses
 
 ```bash
 qiime phylogeny align-to-tree-mafft-fasttree \
@@ -120,7 +105,7 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-rooted-tree rooted-tree.qza
 ```
 
-# Alpha-rarefaction with maximum sequencing depth as 42735
+## Alpha-rarefaction with maximum sequencing depth as 42735
 
 ```bash
 qiime diversity alpha-rarefaction \
@@ -131,7 +116,7 @@ qiime diversity alpha-rarefaction \
   --o-visualization alpha-rarefaction-final.qzv
 ```
 
-# Transfer stats file and rarefaction qzv file for visualization
+## Transfer stats file and rarefaction qzv file for visualization
 
 ```bash
 scp final_stats2.qza root@10.19.139.155:~
