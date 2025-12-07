@@ -43,7 +43,7 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-rooted-tree rooted-tree.qza
 ```
 
-## Alpha-rarefaction
+## Alpha-rarefaction with maximum sequencing depth as 42735
 
 ```bash
 qiime diversity alpha-rarefaction \
@@ -61,13 +61,3 @@ scp final_stats2.qza root@10.19.139.155:~
 scp root@10.19.139.118:~/alpha-rarefaction-final.qzv .
 ```
 
-## Alpha-rarefaction with maximum sequencing depth as 42735
-
-```bash
-qiime diversity alpha-rarefaction \
-  --i-table table-final2.qza \
-  --i-phylogeny rooted-tree.qza \
-  --p-max-depth 42735 \
-  --m-metadata-file Final_Altered_metadata.txt \
-  --o-visualization alpha-rarefaction-final.qzv
-```
