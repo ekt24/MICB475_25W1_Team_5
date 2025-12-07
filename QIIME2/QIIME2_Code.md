@@ -31,6 +31,18 @@ qiime feature-table tabulate-seqs \
 ```bash
 scp root@10.19.139.118:~/rep-seqs-final2.qzv .
 ```
+
+## Generate a tree for phylogenetic diversity analyses
+
+```bash
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences rep-seqs-final2.qza \
+  --o-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+```
+
 ## Alpha-rarefaction
 
 ```bash
@@ -47,17 +59,6 @@ qiime diversity alpha-rarefaction \
 ```bash
 scp final_stats2.qza root@10.19.139.155:~
 scp root@10.19.139.118:~/alpha-rarefaction-final.qzv .
-```
-
-## Generate a tree for phylogenetic diversity analyses
-
-```bash
-qiime phylogeny align-to-tree-mafft-fasttree \
-  --i-sequences rep-seqs-final2.qza \
-  --o-alignment aligned-rep-seqs.qza \
-  --o-masked-alignment masked-aligned-rep-seqs.qza \
-  --o-tree unrooted-tree.qza \
-  --o-rooted-tree rooted-tree.qza
 ```
 
 ## Alpha-rarefaction with maximum sequencing depth as 42735
