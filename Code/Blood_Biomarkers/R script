@@ -15,29 +15,6 @@ for(x in names(metadata_biomarker)){
   }
 }
 
-colnames(metadata_biomarker)[colnames(metadata_biomarker) == "Opioid=Substance"] <- "Opioid"
-
-bxp6 <- ggboxplot(
-  metadata_biomarker, x = "Opioid", y = "AUC insulin", 
-  ylab = "AUC insulin", xlab = "Opioid=Substance",add = "jitter")+theme(
-    axis.title.x = element_text(size = 16),  
-    axis.title.y = element_text(size = 18)  
-  )
-bxp6
-
-stat.test <- metadata_biomarker %>% 
-  wilcox_test(`AUC insulin` ~ Opioid) %>%
-  add_significance() %>% 
-  add_xy_position(x = "Opioid")
-stat.test
-
-plot6 <- bxp6 + 
-  stat_pvalue_manual(stat.test, tip.length = 0) 
-
-plot6
-
-ggsave("plot6.png", width = 6, height = 4, dpi = 300)
-
 #Significant Biomarkers:
 #[1] "FPG"
 #[1] "Fasting insulin"
@@ -45,3 +22,29 @@ ggsave("plot6.png", width = 6, height = 4, dpi = 300)
 #[1] "OGIS"
 #[1] "AUC glucose"
 #[1] "AUC insulin"
+
+colnames(metadata_biomarker)[colnames(metadata_biomarker) == "Opioid=Substance"] <- "Opioid"
+
+bxp <- ggboxplot(
+  metadata_biomarker, x = "Opioid", y = "AUC insulin", 
+  ylab = "AUC insulin", xlab = "Opioid=Substance",add = "jitter")+theme(
+    axis.title.x = element_text(size = 16),  
+    axis.title.y = element_text(size = 18)  
+  )
+bxp
+
+stat.test <- metadata_biomarker %>% 
+  wilcox_test(`AUC insulin` ~ Opioid) %>%
+  add_significance() %>% 
+  add_xy_position(x = "Opioid")
+stat.test
+
+plot <- bxp+ 
+  stat_pvalue_manual(stat.test, tip.length = 0) 
+
+plot
+
+ggsave("plot.png", width = 6, height = 4, dpi = 300)
+
+#Box plots generated for each significant blood biomarker
+
