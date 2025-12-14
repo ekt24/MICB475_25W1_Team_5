@@ -5,6 +5,9 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 
+# Load phyloseq object
+load('data/object_final.RData')
+
 # Add +1 to feature counts to avoid zeros that aren't compatible with DESeq2 when estimating size factors
 phyloseq_object_plus1 <- transform_sample_counts(object_final, function(x) x+1)
 
@@ -42,7 +45,7 @@ ggplot(deseq_df, aes(x = log2FoldChange, y = neg_log10_padj)) +
 # Changing volcano plot labels from taxa ID to genus and species
 # Extract taxonomy table from original phyloseq object and convert to data frame 
 tax <- as.data.frame(as(tax_table(object_final), "matrix"))
-write.csv(tax, "taxonomy_table.csv", row.names = TRUE)
+write.csv(tax, "data/taxonomy_table.csv", row.names = TRUE)
 
 # Merge differential abundance results with taxonomy information using taxon IDs as key
 res_sig_tax <- deseq_df %>%
