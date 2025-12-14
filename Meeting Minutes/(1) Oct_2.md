@@ -23,7 +23,7 @@
     * Send by sunday night (they will check monday), they will lets us know if viable by end of monday → discuss this with team → come with ideas of research questions (ideally finalized by end of next meeting)
 * Existing ones we are interested in: Parkinson's, gastric cancer, alcoholism, depression (has many datasets) COVID (can find new COVID datasets too) 
    * If we want to do these, it will be harder to find a novel question especially since a few (like Parkinson’s) have been here for long and used for many projects
-## TO DO Before next meeting:
+## To Do
 * Compile list of articles with potential new data sets 
 * Fill out when2meet for a quick 30 min meeting on Tuesday or Wednesday to finalize topic
 * Brainstorm research questions
