@@ -16,7 +16,7 @@ deseq_object <- phyloseq_to_deseq2(phyloseq_object_plus1, ~Opioid.Substance)
 
 # Run DESeq2 differential abundance analysis 
 deseq_output <- DESeq(deseq_object)
-results(deseq_output, tidy=TRUE)
+res <- results(deseq_output, tidy=TRUE)
  
 # Convert DESeq2 results to data frame for volcano plot 
 deseq_df <- as.data.frame(res)
@@ -31,7 +31,7 @@ deseq_df <- na.omit(deseq_df)
 deseq_df$neg_log10_padj <- -log10(deseq_df$padj)
 
 # Volcano plot
-ggplot(deseq_df, aes(x = log2FoldChange, y = neg_log10_padj)) +
+volcano_plot <- ggplot(deseq_df, aes(x = log2FoldChange, y = neg_log10_padj)) +
   geom_point(aes(color = padj < 0.05), alpha = 0.8) +
   scale_color_manual(values = c("grey70", "red")) +
   labs(
@@ -41,6 +41,8 @@ ggplot(deseq_df, aes(x = log2FoldChange, y = neg_log10_padj)) +
     color = "Significant (padj < 0.05)"
   ) +
   theme_bw(base_size = 14)
+
+#ggsave("plots/volcano_plot.png", volcano_plot, width = 8, height = 10)
 
 # Changing volcano plot labels from taxa ID to genus and species
 # Extract taxonomy table from original phyloseq object and convert to data frame 
@@ -141,4 +143,4 @@ labs(
   theme_bw(base_size = 14) +
   theme(axis.text.y = element_text(size = 7))
 
-sig_taxa
+ggsave("plots/sig_taxa.pdf", sig_taxa, width = 10, height = 7)
