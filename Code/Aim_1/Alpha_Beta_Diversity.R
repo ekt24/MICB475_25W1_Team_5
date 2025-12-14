@@ -4,16 +4,16 @@ library(ape)
 library(vegan)
 library(ggplot2)
 
-metaFP <- "Final_Altered_metadata.txt" 
+metaFP <- "data/Final_Altered_metadata.txt" 
 meta <- read.delim(file=metaFP)
 
-otuFP <- "feature-table.txt" 
+otuFP <- "data/feature-table.txt" 
 otu <- read.delim(file=otuFP, skip=1, row.names = 1)
 
-taxFP <- "taxonomy.tsv"
+taxFP <- "data/taxonomy.tsv"
 tax <- read.delim(file=taxFP)
 
-phylotreefp <- "tree.nwk"
+phylotreefp <- "data/tree.nwk"
 phylotree <- read.tree(phylotreefp)
 
 #format
@@ -47,7 +47,7 @@ object_filt_nolow_samps <- prune_samples(sample_sums(object_filt_nolow)>100, obj
 object_final <- subset_samples(object_filt_nolow_samps, !is.na(month) & Opioid.Substance %in% c("Yes", "No"))
 
 #object_final is the phyloseq object to be used for Aims 1/2
-save(object_final, file = "object_final.RData")
+save(object_final, file = "data/object_final.RData")
 
 #sample size based on Min.
 summary(sample_sums(object_final))
@@ -70,27 +70,27 @@ plot1 <- ggplot(shannon_df, aes(x = Opioid.Substance, y = Shannon)) +
   theme_bw()
 
 print(plot1)
-ggsave("Shannon_boxplot.png", plot = plot1, width = 6, height = 4, dpi = 300)
+ggsave("data/Shannon_boxplot.png", plot = plot1, width = 6, height = 4, dpi = 300)
 
 #Wilcox Rank Sum Test
 
 wilcox_result1 <- wilcox.test(Shannon ~ Opioid.Substance, data = shannon_df)
 wilcox_result1
 
-save(wilcox_result1, file = "wilcox_result.RData")
+save(wilcox_result1, file = "data/wilcox_result.RData")
 
 #Bray & PERMANOVA
 bray_dist1 <- phyloseq::distance(object_rare1, method = "bray")
-save(bray_dist1, file = "bray_dist1.RData")
+save(bray_dist1, file = "data/bray_dist1.RData")
 
 pn_1 <- adonis2(bray_dist1 ~ Opioid.Substance, data = data.frame(sample_data(object_rare1)), permutations = 999)
 pn_1
-save(pn_1, file = "permanova_result1.RData")
+save(pn_1, file = "data/permanova_result1.RData")
 
 pcoa_bc1 <- ordinate(object_rare1, method="PCoA", distance=bray_dist1)
 gg_pcoa1 <- plot_ordination(object_rare1, pcoa_bc1, color = "Opioid.Substance") + stat_ellipse()
 print(gg_pcoa1)
-ggsave(filename = "PCoA_plot.png", plot = gg_pcoa1, 
+ggsave(filename = "data/PCoA_plot.png", plot = gg_pcoa1, 
       width = 6, height = 5, units = "in", dpi = 300)
 
 
