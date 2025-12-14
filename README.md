@@ -8,7 +8,7 @@
 [Qiime](QIIME2/QIIME2_Code.md) \
 [Aim 1](Code/Aim_1/Alpha_Beta_Diversity.R) \
 [Aim 2]() \
-[Aim 3](Code/Aim_3/randomforest_functions.R) \
+[Aim 3](Code/Aim_3/random_forest_analysis.ipynb) \
 [Supplementary Analysis of Blood Biomarkers](Code/Blood_Biomarkers/R_script.R)
 
 
