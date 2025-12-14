@@ -143,4 +143,4 @@ labs(
   theme_bw(base_size = 14) +
   theme(axis.text.y = element_text(size = 7))
 
-ggsave("plots/sig_taxa.pdf", sig_taxa, width = 10, height = 7)
+ggsave("plots/sig_taxa.png", sig_taxa, width = 10, height = 7)
