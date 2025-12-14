@@ -1,3 +1,4 @@
+# Meeting Minutes - Oct 2
 ## Goal of Team Meetings
 * Dedicated support time 
 * Based on whatever type of support we need, anything we need to troubleshoot, direction on project, etc.
