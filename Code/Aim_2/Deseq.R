@@ -22,7 +22,7 @@ res <- results(deseq_output, tidy=TRUE)
 deseq_df <- as.data.frame(res)
 
 # Separate taxon IDs as separate column
-deseq_df$taxa <- rownames(deseq_df)
+deseq_df$taxa <- deseq_df$row
 
 # Remove NA values
 deseq_df <- na.omit(deseq_df)
@@ -96,9 +96,6 @@ sig$Species[is.na(sig$Species) | sig$Species == "" | grepl("uncultured", sig$Spe
 # Create final clean label
 sig$label <- trimws(paste(sig$Genus, sig$Species))
 
-# Remove duplicated genus names 
-sig$Species <- gsub("^" %+% sig$Genus %+% "\\s*", "", sig$Species)
-
 # Remove underscores
 # Remove repeated genus prefixes
 sig$Species <- mapply(
@@ -143,4 +140,4 @@ labs(
   theme_bw(base_size = 14) +
   theme(axis.text.y = element_text(size = 7))
 
-ggsave("plots/sig_taxa.png", sig_taxa, width = 10, height = 7)
+#ggsave("plots/sig_taxa.png", sig_taxa, width = 10, height = 7)
