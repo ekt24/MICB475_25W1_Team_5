@@ -52,14 +52,11 @@ save(object_final, file = "object_final.RData")
 #sample size based on Min.
 summary(sample_sums(object_final))
 
-#rarefied to 2 lengths
+#rarefied 
 rarecurve(t(as.data.frame(otu_table(object_final))), cex=0.1)
 object_rare1 <- rarefy_even_depth(object_final, rngseed = 1, sample.size = 1000)
 
-#rarecurve(t(as.data.frame(otu_table(object_final))), cex=0.1)
-#object_rare2 <- rarefy_even_depth(object_final, rngseed = 1, sample.size = 267)
-
-#Shannon on Rare 1 (1000) & Rare 2 (267) 
+#Shannon
 
 shannon_df <- data.frame(
   Shannon = estimate_richness(object_rare1, measures = "Shannon")$Shannon,
@@ -69,38 +66,20 @@ shannon_df <- data.frame(
 plot1 <- ggplot(shannon_df, aes(x = Opioid.Substance, y = Shannon)) +
   labs(y = "Shannon Diversity Index", x = "Opioid Use") +
   geom_boxplot() +
-  geom_jitter(width = 0.2, alpha = 0.5) +   # optional points
+  geom_jitter(width = 0.2, alpha = 0.5) + 
   theme_bw()
 
 print(plot1)
 ggsave("Shannon_boxplot.png", plot = plot1, width = 6, height = 4, dpi = 300)
 
-#shannon1 <- estimate_richness(object_rare1, measures = "Shannon")$Shannon
-#plot1 <- plot_richness(object_rare1, measures = c("Shannon"), x = "Opioid.Substance")
-#print(plot1)
-#ggsave(filename = "Shannon_plot.png", plot = plot1, 
-#       width = 6, height = 4, units = "in", dpi = 300)
-
-#Wilcox Rank Sum Test on Rare 1 (1000) & Rare 2 (267) 
+#Wilcox Rank Sum Test
 
 wilcox_result1 <- wilcox.test(Shannon ~ Opioid.Substance, data = shannon_df)
 wilcox_result1
 
 save(wilcox_result1, file = "wilcox_result.RData")
 
-#v1 had W=1029, p-value=0.3742, not significant
-
-#shannon_df2 <- data.frame(
-#  Shannon = shannon2,
-#  Opioid.Substance = sample_data(object_rare2)$Opioid.Substance
-#)
-#shannon_df_final2 <- shannon_df2 %>%
-#  filter(Opioid.Substance %in% c("Yes", "No"))
-#wilcox_result2 <- wilcox.test(Shannon ~ Opioid.Substance, data = shannon_df_final1)
-
-#v2 had W=1156, p-value=0.1899, not significant
-
-#Bray & PERMANOVA, on Rare 1 (1000) & Rare 2 (267)
+#Bray & PERMANOVA
 bray_dist1 <- phyloseq::distance(object_rare1, method = "bray")
 save(bray_dist1, file = "bray_dist1.RData")
 
@@ -114,14 +93,5 @@ print(gg_pcoa1)
 ggsave(filename = "PCoA_plot.png", plot = gg_pcoa1, 
       width = 6, height = 5, units = "in", dpi = 300)
 
-#v1 p=0.044, significant 
 
-#bray_dist2 <- phyloseq::distance(object_rare2, method = "bray")
-#pn_2 <- adonis2(bray_dist2 ~ Opioid.Substance, data = data.frame(sample_data(object_rare2)), permutations = 999)
-#pn_2
-#pcoa_bc2 <- ordinate(object_rare2, method="PCoA", distance=bray_dist2)
-#gg_pcoa2 <- plot_ordination(object_rare2, pcoa_bc2, color = "Opioid.Substance") + stat_ellipse()
-#print(gg_pcoa2)
-
-#v2 p=0.069, not significant
 
