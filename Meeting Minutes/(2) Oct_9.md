@@ -1,4 +1,9 @@
 # Meeting Minutes - Oct 9
+## Agenda
+* Questions/Ideas for Prof & Team Members
+* Research Question Discussion
+  * Dataset chosen:
+  * struggling with finding a novel question 
 ## Research Question/Dataset Discussion
 * Dataset chosen: Gut & Opioid Use Dataset
   * Note: Opioid Use is only indicated as 'Yes' in this dataset for patients who meet the  Opioid Use Disorder critera according to DSM-4.

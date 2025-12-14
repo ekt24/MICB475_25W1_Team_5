@@ -1,4 +1,8 @@
 # Meeting Minutes - Nov 6
+## Agenda
+* Questions based on struggles in writing the proposal
+* Qiime pipeline issues
+* Discuss starting Aim 1 & 2 (including what level of documentation we need to do)
 ## Feedback on Proposal
 * Well done overall! 
 * Intro & Rationale was well written, to the point 
