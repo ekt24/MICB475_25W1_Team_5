@@ -1,12 +1,19 @@
-# Agenda
-
+# Meeting Minutes - Nov 20
 ## Goals
 * Progress on Aims 1 & 2
 * Results of alpha and beta analysis? and Results of deseq?
 * Which specific taxa to choose for Random Forest modelling
 
-# Meeting Minutes
+## Progress on Aims
+* Aim 1 code is running a bit behind, no anticipated issues however - will be completed by tonight for use in Aim 3
+  * Ensure you do NOT use rarefied phyloseq object for Aim 2, give Toma the unrarified object (only use the rarified object for your analysis
+* Aim 2 code is ready to run, will be run following Aim 1, code looks clean, no concerns
+  * Once we have deseq results, we can narrow down the taxa
+* Aim 3 will be run on the weekend
+  * If there are no signficant results, whats the back up?
+    * We can run diversity test on clinical biomarkers and see if that alone works to produce good results in the predicitive model and compare this with the combined model
 
-# To do
+## To do
 * Wilcoxon on biomarkers to narrow down biomarkers, then build random forest model for biomarkers; Run a for loop to test all biomarkers at once
-* We can figure out how to narrow down taxa after we get deseq results
+* Bring results from all aims to the meeting next week
+* Bring draft PPT to review
