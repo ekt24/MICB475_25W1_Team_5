@@ -4,16 +4,18 @@ library(ape)
 library(vegan)
 library(ggplot2)
 
-metaFP <- "data/Final_Altered_metadata.txt" 
+#loading all necessary files from qiime
+
+metaFP <- "Final_Altered_metadata.txt" 
 meta <- read.delim(file=metaFP)
 
-otuFP <- "data/feature-table.txt" 
+otuFP <- "feature-table.txt" 
 otu <- read.delim(file=otuFP, skip=1, row.names = 1)
 
-taxFP <- "data/taxonomy.tsv"
+taxFP <- "taxonomy.tsv"
 tax <- read.delim(file=taxFP)
 
-phylotreefp <- "data/tree.nwk"
+phylotreefp <- "tree.nwk"
 phylotree <- read.tree(phylotreefp)
 
 #format
@@ -47,22 +49,28 @@ object_filt_nolow_samps <- prune_samples(sample_sums(object_filt_nolow)>100, obj
 object_final <- subset_samples(object_filt_nolow_samps, !is.na(month) & Opioid.Substance %in% c("Yes", "No"))
 
 #object_final is the phyloseq object to be used for Aims 1/2
-save(object_final, file = "data/object_final.RData")
+save(object_final, file = "object_final.RData")
+
+#number of samples remaning after filtering
+nsamples(object_final)
 
 #sample size based on Min.
 summary(sample_sums(object_final))
 
-#rarefied 
+#rarefied to 2 lengths
 rarecurve(t(as.data.frame(otu_table(object_final))), cex=0.1)
-object_rare1 <- rarefy_even_depth(object_final, rngseed = 1, sample.size = 1000)
+object_rare1 <- rarefy_even_depth(object_final, rngseed = 1, sample.size = 19434)
 
-#Shannon
+#number of sample remainng after rarefraction
+nsamples(object_rare1)
 
+#Shannon Diversity
 shannon_df <- data.frame(
   Shannon = estimate_richness(object_rare1, measures = "Shannon")$Shannon,
   Opioid.Substance = sample_data(object_rare1)$Opioid.Substance
 )
 
+#Plotting Shannon on a Boxplot
 plot1 <- ggplot(shannon_df, aes(x = Opioid.Substance, y = Shannon)) +
   labs(y = "Shannon Diversity Index", x = "Opioid Use") +
   geom_boxplot() +
@@ -70,28 +78,32 @@ plot1 <- ggplot(shannon_df, aes(x = Opioid.Substance, y = Shannon)) +
   theme_bw()
 
 print(plot1)
-ggsave("data/Shannon_boxplot.png", plot = plot1, width = 6, height = 4, dpi = 300)
+ggsave("Shannon_boxplot.png", plot = plot1, width = 6, height = 4, dpi = 300)
 
-#Wilcox Rank Sum Test
+#Wilcox Rank Sum Test 
 
 wilcox_result1 <- wilcox.test(Shannon ~ Opioid.Substance, data = shannon_df)
 wilcox_result1
 
-save(wilcox_result1, file = "data/wilcox_result.RData")
+save(wilcox_result1, file = "wilcox_result.RData")
+
+#W=479, p-value=0.4527, not significant
 
 #Bray & PERMANOVA
 bray_dist1 <- phyloseq::distance(object_rare1, method = "bray")
-save(bray_dist1, file = "data/bray_dist1.RData")
+save(bray_dist1, file = "bray_dist1.RData")
 
 pn_1 <- adonis2(bray_dist1 ~ Opioid.Substance, data = data.frame(sample_data(object_rare1)), permutations = 999)
 pn_1
-save(pn_1, file = "data/permanova_result1.RData")
+save(pn_1, file = "permanova_result1.RData")
 
 pcoa_bc1 <- ordinate(object_rare1, method="PCoA", distance=bray_dist1)
 gg_pcoa1 <- plot_ordination(object_rare1, pcoa_bc1, color = "Opioid.Substance") + stat_ellipse()
 print(gg_pcoa1)
-ggsave(filename = "data/PCoA_plot.png", plot = gg_pcoa1, 
+ggsave(filename = "PCoA_plot.png", plot = gg_pcoa1, 
       width = 6, height = 5, units = "in", dpi = 300)
+
+#p=0.54, not significant 
 
 
 
