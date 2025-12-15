@@ -32,7 +32,25 @@ qiime feature-table tabulate-seqs \
 scp root@10.19.139.118:~/rep-seqs-final2.qzv .
 ```
 
-## Generate a tree for phylogenetic diversity analyses
+## Generate a Taxonomy Table using trained classifier
+```bash
+qiime feature-classifier classify-sklearn \
+  --i-classifier silva-138-99-v34-classifier.qza \
+  --i-reads rep-seqs-final2.qza \
+  --o-classification taxonomy.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
+
+qiime taxa barplot \
+  --i-table table-final2.qza \
+  --i-taxonomy taxonomy.qza \
+  --m-metadata-file Final_Altered_metadata.txt \
+  --o-visualization taxa-bar-plots.qzv
+```
+
+## Generate a Tree for phylogenetic diversity analyses
 
 ```bash
 qiime phylogeny align-to-tree-mafft-fasttree \
